@@ -1,0 +1,86 @@
+easySlider 1.7
+--------------
+
+Options
+
+So, let's go through all of the options. For your convenience I have written the options from previous version of this plugin, so you can have it all in one place. Here they are with their default values:
+
+prevId: 		'prevBtn',
+prevText: 		'Previous',
+nextId: 		'nextBtn',	
+nextText: 		'Next',
+controlsShow:		true,
+controlsBefore:	'',
+controlsAfter:		'',	
+controlsFade:		true,
+firstId: 		'firstBtn',
+firstText: 		'First',
+firstShow:		false,
+lastId: 		'lastBtn',	
+lastText: 		'Last',
+lastShow:		false,				
+vertical:		false,
+speed: 		800,
+auto:			false,
+pause:			2000,
+continuous:		false, 
+numeric: 		false,
+numericId: 		'controls'
+
+prevId
+
+Id attribute for "previous" button. Default value is "prevBtn".
+
+prevText
+
+Inner text for "previous" button. Default value is "Previous".
+
+nextId
+
+Id attribute for "next" button. Default value is "nextBtn".
+
+nextText
+
+Inner text for "next" button. Default value is "Next".
+
+orientation
+
+Sliding can be horizontal or vertical. Horizontal is default and if you want vertical set this to 'vertical'.
+
+speed
+
+Animation speed in milliseconds, default value is 800.
+
+controlsShow
+
+By default set to true, but if set to false it will not add any controls. It can be used with auto scroll when you want to disable user interaction.
+
+controlsBefore and controlsAfter
+
+In case you want to add some additional markup to gain more control over buttons you can do so by using these parameters. Check out the demo where I use these options.
+
+controlsFade
+
+By default set to true. If set to false it will disable button hiding when slider reaches the end.
+firstShow and lastShow
+
+These parameters hide (or show) "go to first" and "go to last" buttons.
+
+auto
+
+This option enables automatic sliding. If you set it to true the sliding will automatically start and continue to perform untill user clicks one of the buttons.
+
+pause
+
+This option is set in milliseconds and it represent the duration of each slide when plugin is set to auto sliding.
+continuous
+
+If set to true clicking the next button when the slider reached the end will simply continue showing all of the slides again with continuous motion. Combining this option with auto (both set to true) you'll get endless animation.
+
+numeric (NEW!)
+
+If you set this option to true you will get numeric navigation instead of next/prev buttons. Plugin will create an ordered list just after the slider div. Ordered list will have the exact number of elements as the slider. Clicking on each of the number will make the animation jump to a certain slide.
+
+numericId (NEW!)
+
+This option defines id attribute for the ordered list. You should use this id to select and style the list with CSS.
