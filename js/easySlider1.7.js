@@ -203,7 +203,7 @@
 			};
 			// init
 			var timeout;
-			if(options.auto){;
+			if(s > 1 && options.auto){;
 				timeout = setTimeout(function(){
 					animate("next",false);
 				},options.pause);
