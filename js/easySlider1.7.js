@@ -211,7 +211,8 @@
 			
 			if(options.numeric) setCurrent(0);
 		
-			if(!options.continuous && options.controlsFade){					
+			if(!options.continuous && options.controlsFade){
+				if(s == 1) $("a","#"+options.nextId).hide();					
 				$("a","#"+options.prevId).hide();
 				$("a","#"+options.firstId).hide();				
 			};				
