@@ -54,7 +54,7 @@
 			continuous:		false, 
 			numeric: 		false,
 			numericId: 		'controls'
-		}; 
+		} 
 		
 		var options = $.extend(defaults, options);  
 				
@@ -75,7 +75,7 @@
 				$("ul", obj).prepend($("ul li:last-child", obj).clone().css("margin-left","-"+ w +"px"));
 				$("ul", obj).append($("ul li:nth-child(2)", obj).clone());
 				$("ul", obj).css('width',(s+1)*w);
-			};				
+			}				
 			
 			if(!options.vertical) $("li", obj).css('float','left');
 								
@@ -83,16 +83,30 @@
 				var html = options.controlsBefore;				
 				if(options.numeric){
 					html += '<ol id="'+ options.numericId +'"></ol>';
-				} else {
-					if(options.firstShow) html += '<span id="'+ options.firstId +'"><a href=\"javascript:void(0);\">'+ options.firstText +'</a></span>';
-					html += ' <span id="'+ options.prevId +'"><a href=\"javascript:void(0);\">'+ options.prevText +'</a></span>';
-					html += ' <span id="'+ options.nextId +'"><a href=\"javascript:void(0);\">'+ options.nextText +'</a></span>';
-					if(options.lastShow) html += ' <span id="'+ options.lastId +'"><a href=\"javascript:void(0);\">'+ options.lastText +'</a></span>';				
-				};
+				} 
+               
+                if(options.firstShow) html += '<span id="'+ options.firstId +'"><a href=\"javascript:void(0);\">'+ options.firstText +'</a></span>';
+                html += ' <span id="'+ options.prevId +'"><a href=\"javascript:void(0);\">'+ options.prevText +'</a></span>';
+                html += ' <span id="'+ options.nextId +'"><a href=\"javascript:void(0);\">'+ options.nextText +'</a></span>';
+                if(options.lastShow) html += ' <span id="'+ options.lastId +'"><a href=\"javascript:void(0);\">'+ options.lastText +'</a></span>';				
 				
 				html += options.controlsAfter;						
-				$(obj).after(html);										
-			};
+				$(obj).after(html);
+
+                // binding
+                $("a","#"+options.nextId).click(function(){
+                    animate("next",true);
+                });
+                $("a","#"+options.prevId).click(function(){
+                    animate("prev",true);
+                });
+                $("a","#"+options.firstId).click(function(){
+                    animate("first",true);
+                });
+                $("a","#"+options.lastId).click(function(){
+                    animate("last",true);
+                });
+			}
 			
 			if(options.numeric){									
 				for(var i=0;i<s;i++){						
@@ -103,27 +117,14 @@
 						.click(function(){							
 							animate($("a",$(this)).attr('rel'),true);
 						}); 												
-				};							
-			} else {
-				$("a","#"+options.nextId).click(function(){		
-					animate("next",true);
-				});
-				$("a","#"+options.prevId).click(function(){		
-					animate("prev",true);				
-				});	
-				$("a","#"+options.firstId).click(function(){		
-					animate("first",true);
-				});				
-				$("a","#"+options.lastId).click(function(){		
-					animate("last",true);				
-				});				
-			};
-			
+				}							
+			}
+
 			function setCurrent(i){
 				i = parseInt(i)+1;
 				$("li", "#" + options.numericId).removeClass("current");
 				$("li#" + options.numericId + i).addClass("current");
-			};
+			}
 			
 			function adjust(){
 				if(t>ts) t=0;		
@@ -135,7 +136,7 @@
 				}
 				clickable = true;
 				if(options.numeric) setCurrent(t);
-			};
+			}
 			
 			function animate(dir,clicked){
 				if (clickable){
@@ -155,9 +156,9 @@
 							t = ts;
 							break; 
 						default:
-							t = dir;
+                            t = parseInt(dir);
 							break; 
-					};	
+					}	
 					var diff = Math.abs(ot-t);
 					var speed = diff*options.speed;						
 					if(!options.vertical) {
@@ -172,7 +173,7 @@
 							{ marginTop: p }, 
 							{ queue:false, duration:speed, complete:adjust }
 						);					
-					};
+					}
 					
 					if(!options.continuous && options.controlsFade){					
 						if(t==ts){
@@ -181,33 +182,33 @@
 						} else {
 							$("a","#"+options.nextId).show();
 							$("a","#"+options.lastId).show();					
-						};
+						}
 						if(t==0){
 							$("a","#"+options.prevId).hide();
 							$("a","#"+options.firstId).hide();
 						} else {
 							$("a","#"+options.prevId).show();
 							$("a","#"+options.firstId).show();
-						};					
-					};				
+						}					
+					}				
 					
 					if(clicked) clearTimeout(timeout);
-					if(options.auto && dir=="next" && !clicked){;
+					if(options.auto && dir=="next" && !clicked){
 						timeout = setTimeout(function(){
 							animate("next",false);
 						},diff*options.speed+options.pause);
-					};
+					}
 			
-				};
+				}
 				
-			};
+			}
 			// init
 			var timeout;
-			if(s > 1 && options.auto){;
+			if(s > 1 && options.auto){
 				timeout = setTimeout(function(){
 					animate("next",false);
 				},options.pause);
-			};		
+			}		
 			
 			if(options.numeric) setCurrent(0);
 		
@@ -215,11 +216,11 @@
 				if(s == 1) $("a","#"+options.nextId).hide();					
 				$("a","#"+options.prevId).hide();
 				$("a","#"+options.firstId).hide();				
-			};				
+			}				
 			
 		});
 	  
-	};
+	}
 
 })(jQuery);
 
